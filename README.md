@@ -1,2 +1,2 @@
 # Postform-Library
-Angualr Library for CURD API
+Angular Library for CURD API
