@@ -34,12 +34,12 @@ npm link
 npm link @project-sunbird/common-consumption
 ```
 ---
-## Step 1: Install the package
+## Install the package
 
     npm install @project-sunbird/common-consumption --save
     npm install @project-sunbird/sb-styles --save
 
-## Step 2: Include the sb-styles and assets in angular.json
+## Include the sb-styles and assets in angular.json
     "styles": [
     ...
     ...
