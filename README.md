@@ -16,7 +16,6 @@ How to use @project-sunbird/common-consumption in your projects
 - [Step 1: Install the package](#step-1-install-the-package)
 - [Step 2: Include the sb-styles and assets in angular.json](#step-2-include-the-sb-styles-and-assets-in-angularjson)
 - [Step 3: Import the modules and components](#step-3-import-the-modules-and-components)
-- [Step 3: Import the modules and components](#step-3-import-the-modules-and-components)
 - [Available components](#available-components)
 - [Available directives](#available-directives)
 - [Versions](#versions)
