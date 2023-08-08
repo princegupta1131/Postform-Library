@@ -13,9 +13,9 @@ How to use @project-sunbird/common-consumption in your projects
 ## Table of Contents
 
 - [Using library locally](#Using-library-locally)
-- [Step 1: Install the package](#Install-the-package)
-- [Step 2: Include the sb-styles and assets in angular.json](#Include-the-sb-styles-and-assets-in-angular.json)
-- [Step 3: Import the modules and components](#Import-the-modules-and-components)
+- [Install the package](#Install-the-package)
+- [Include the sb-styles and assets in angular.json](#Include-the-sb-styles-and-assets-in-angular.json)
+- [Import the modules and components](#Import-the-modules-and-components)
 ---
 
 ## Using library locally 
@@ -34,12 +34,12 @@ npm link
 npm link @project-sunbird/common-consumption
 ```
 ---
-## Step 1: Install the package
+## Install the package
 
     npm install @project-sunbird/common-consumption --save
     npm install @project-sunbird/sb-styles --save
 
-## Step 2: Include the sb-styles and assets in angular.json
+## Include the sb-styles and assets in angular.json
     "styles": [
     ...
     ...
@@ -85,7 +85,7 @@ npm link @project-sunbird/common-consumption
 
   
 
-## Step 3: Import the modules and components
+## Import the modules and components
 Import the NgModule for each component you want to use:
        
     import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
