@@ -13,7 +13,7 @@ How to use @project-sunbird/common-form-elements in your projects
 
 ## Table of Contents
 
-- [Using library locally](#Using-library-locally)
+- [Using library locally](#using-library-locally)
 - [Step 1: Install the package](#step-1-install-the-package)
 - [Step 2: Include the library selector in view( Eg .HTML file)](#step-2-include-the-library-selector-in-view-eg-html-file)
 - [Step 3: Form component emits values on every input , To get value include event callbacks](#step-3-form-component-emits-values-on-every-input--to-get-value-include-event-callbacks)
