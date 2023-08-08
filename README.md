@@ -1,5 +1,6 @@
-# Common angular components for Sunbird consumption!
-Contains common UI components powered by angular. These components are designed to be used in sunbird consumption platforms *(mobile app, web portal, offline desktop app)* to drive reusability, maintainability hence reducing the redundant development effort significantly.
+# Sunbird-ED Forms
+
+Contains  Form component powered by angular. This component expects a configuration and renders form according to the view.
 
 <p>
   <img alt="angular" src="https://img.shields.io/badge/-Angular-DD0031?style=flat-square&logo=angular&logoColor=white" height=25 />
@@ -8,16 +9,15 @@ Contains common UI components powered by angular. These components are designed 
 
 ---
 ## Getting started
-How to use @project-sunbird/common-consumption in your projects
+How to use @project-sunbird/common-form-elements in your projects
 
 ## Table of Contents
 
 - [Using library locally](#Using-library-locally)
 - [Step 1: Install the package](#step-1-install-the-package)
-- [Step 2: Include the sb-styles and assets in angular.json](#step-2-include-the-sb-styles-and-assets-in-angularjson)
-- [Step 3: Import the modules and components](#step-3-import-the-modules-and-components)
-- [Available components](#available-components)
-- [Available directives](#available-directives)
+- [Step 2: Include the library selector in view( Eg .HTML file)](#step-2-include-the-library-selector-in-view-eg-html-file)
+- [Step 3: Form component emits values on every input , To get value include event callbacks](#step-3-form-component-emits-values-on-every-input--to-get-value-include-event-callbacks)
+- [Steps to Integrate the form](#steps-to-integrate-the-form)
 - [Versions](#versions)
 ---
 
@@ -28,145 +28,101 @@ How to use @project-sunbird/common-consumption in your projects
 npm run build-lib
 ```
 2. link library
-   -> cd dist/common-consumption
+   -> cd dist/common-form-elements
 ```console
 npm link
 ```
 3. Link the library to your project
 ```console
-npm link @project-sunbird/common-consumption
+npm link @project-sunbird/common-form-elements
 ```
 ---
+
 ## Step 1: Install the package
 
-    npm install @project-sunbird/common-consumption --save
-    npm install @project-sunbird/sb-styles --save
+    npm install common-form-elements --save
 
-## Step 2: Include the sb-styles and assets in angular.json
-    "styles": [
-    ...
-    ...
-    "./node_modules/@project-sunbird/sb-styles/assets/_styles.scss"
-    ]
-  Add following under architect.build.assets
+## Step 2: Include the library selector in view( Eg .HTML file)
+   
+   <sb-form [config]='config'></sb-form>
 
-     {
-	    ...
-	    "build": {
-	    
-	    "builder": "@angular-devkit/build-angular:browser",
-	    
-	    "options": {
-		    ...
-		    ...
-    
-		    "assets": [
-		    
-			   ...
-			   ...
-			    
-			    {
-				    "glob": "**/*.*",
-				    "input": "./node_modules/@project-sunbird/common-consumption/assets",
-				    "output": "./assets/common-consumption"
-			    }
-		    
-		    ],
-    
-	    "styles": [
-	    
-	    ...
-	    
-	    "./node_modules/@project-sunbird/sb-styles/assets/_styles.scss"
-	    
-	    ],
-	    
-	    ...
-	    ...
-    
-    },
-
+## Step 3: Form component emits values on every input , To get value include event callbacks
+ 
+  <sb-form (valueChanges)="function($event)" (statusChanges)="function($event)" ></sb-form>
   
+## Steps to Integrate the form
 
-## Step 3: Import the modules and components
-Import the NgModule for each component you want to use:
-       
-    import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
-    
-    @NgModule({
-	    ...
-	    
-	    imports: [CommonConsumptionModule],
-	    
-	    ...
-    })
+Please refer following link for sample config
 
-  
-    export class TestAppModule { }
-
-Alternatively, you can create a separate NgModule that imports and then re-exports all of the Angular components that you will use in your application. By exporting them again, other modules can simply include your CustomSunbirdComponentsModule wherever components are needed, and automatically get all of the exported modules. A good place for importing/exporting the application-wide modules is the SharedModule.
-
-    import { CardsModule } from '@project-sunbird/common-consumption/card';
-
-    import { PopoverModule } from '@project-sunbird/common-consumption/popover';
+https://github.com/Sunbird-Ed/SunbirdEd-forms/blob/release-4.1.0/projects/common-form-elements/src/lib/form/form.component.ts
+   
+The Form Can render following elements:
 
 
-    @NgModule({
-    
-    ...
-    
-    imports: [CardsModule, PopoverModule],
-    
-    exports: [CardsModule, PopoverModule],
-    
-    ...
-    
-    })
+* Text Box
+* Text Area
+* Drop Down (Single)
+* Multi Select Drop Down
+
+Drop Down Data Sources:
+Drop Down can be provided with multiple types of Data Sources:
+* Static List
+* Closure which is called as MARKER in above config (A function which returns Promise of FieldConfig)
+* API Source - Currently Not Developed (Open For Contribution)
 
 
-    export class MyOwnCustomSunbirdComponentsModule { }
 
-## Available components
-|Feature| Notes| Selector|Code|
-|--|--|--|------------------------------------------------------------------------------------------|
-| [LibraryCard](./projects/common-consumption/src/lib/card/library-card/library-card.md) | Can be used in the library page for all consumption platforms| sb-library-card| *`<sb-library-card><sb-library-card>`*|
-| [CourseCard](./projects/common-consumption/src/lib/card/course-card/course-card.md) | Can be used in the courses page for all consumption platforms| sb-course-card| *`<sb-course-card><sb-course-card>`*|
-| [MyCourseCard](./projects/common-consumption/src/lib/card/my-course-card/my-course-card.md) | Can be used in the My courses section for all consumption platforms| sb-my-course-card| *`<sb-my-course-card></sb-my-course-card>`*|
-| [TocCard](./projects/common-consumption/src/lib/card/toc-card/toc-card.md) | Can be used in the TOC card| sb-toc-card|NA|
-| [LibraryCardsGrid](./projects/common-consumption/src/lib/layout/library-cards-grid/library-cards-grid.md) | Can be used in the courses page for all consumption platforms|sb-library-cards-grid
-|*`<sb-library-cards-grid [title]="Grid Title" [isLoading]="isLoading[maxCardCount="3"><sb-library-cards-grid>`*|
-| [CourseCardsGrid](./projects/common-consumption/src/lib/layout/course-cards-hlist/course-cards-hlist.md) | Can be used in the course page for all consumption platforms|sb-course-cards-hlist|
-*`<sb-course-cards-hlist [multiRow]="true" [contentList]="range(15)"[type="'curiculum_course_card_grid'" [title]="'Courses'" [isLoading]="isLoading"><sb-course-cards-hlist>`*|
-| [LibraryCardsStack](./projects/common-consumption/src/lib/layout/library-cards-stack/library-cards-stack.md) | Can be used in the courses page for all consumption platforms|sb-library-cards-stack|
-*`<sb-library-cards-stack [title]="Stack Title"[contentList]="range(15)" [maxCardCount]="3" [isLoading]="isLoading"></sb-library-cards-stack>`*|
-| [Confirmation Modal]([https://github.com/Sunbird-Ed/SunbirdEd-consumption-ngcomponents](https://github.com/Sunbird-Ed/SunbirdEd-consumption-ngcomponents)) | Can be used in places where a popup is needed with user prompt|sb-confirmation-modal||
-| [LibraryFilters](./projects/common-consumption/src/lib/library-filters/library-filters/library-filters.md) | Can be used in the library page for all consumption platforms. |sb-library-filters||
-| [FAQ Component](./projects/common-consumption/src/lib/faq/faq/faq.md) | Faq for Consumption Clients with intractable events. |sb-faq||
-| [Card hover component](./projects/common-consumption/src/lib/card/card-hover/card-hover.md) | Can be used with library card to add overlay on card with action items . |sb-card-hover||
-| [TOCItem component](./projects/common-consumption/src/lib/content-details/toc-item/toc-item.md) | Shows given  array of Items with accordion structure. |sb-toc-item||
-| [TOCChildItem component](./projects/common-consumption/src/lib/content-details/toc-child-item/toc-child-item.md) | Shows given  array of Items with accordion structure. |sb-toc-item||
-| [Member Card component](./projects/common-consumption/src/lib/card/member-card/member-card.md) | Member Card With Menu. |sb-member-card|
-*`<sb-member-card></sb-member-card>`*|
-| [Member List component](./projects/common-consumption/src/lib/layout/member-list/member-list.md) | Member List With Cards. |sb-member-list|
-*`<sb-member-list [layoutConfig]="{size:'medium', isBold:false, isSelectable:true,view:'horizontal'}" [memberList]="range(15)" [isMenu]="false"(cardClick)="memberCardClick``  ($event)" (menuClick)="menuClick($event)"></`sb-member-list>`*|
-| [Group Card component](./projects/common-consumption/src/lib/card/group-card/group-card.md) | 
-Group Card. |sb-group-card|
-*`<sb-group-card></sb-group-card>`*|
+Example of Closure Implementation
 
-## Available directives
-|Feature| Notes| directive|Code|
-|--|--|--|------------------------------------------------------------------------------------------|
-| CertificateDownloadAsImageDirective | Can be used on any DOM element to make it download certificate as image on click| sbCertificateDownloadAsImage| *`<button sbCertificateDownloadAsImage [template]="'<svg some-attr="$SOME_VAR"></svg>'" [metadata]="{$SOME_VAR: 'SOME_VALUE'}" [baseUrl]="'SAMPLE_BASE_URL'"></button>`*|
-| CertificateDownloadAsPdfDirective | Can be used on any DOM element to make it download certificate as PDF on click| sbCertificateDownloadAsPdf| *`<button sbCertificateDownloadAsImage [template]="'<svg some-attr="$SOME_VAR"></svg>'" [metadata]="{$SOME_VAR: 'SOME_VALUE'}" [baseUrl]="'SAMPLE_BASE_URL'"></button>`*|
+```
+buildStateListClosure(config: FieldConfig<any>, initial = false): FieldConfigOptionsBuilder<Location> {
+    return (formControl: FormControl, _: FormControl, notifyLoading, notifyLoaded) => {
+      return defer(async () => {
+        const req: LocationSearchCriteria = {
+          from: CachedItemRequestSourceFrom.SERVER,
+          filters: {
+            type: LocationType.TYPE_STATE
+          }
+        };
+        notifyLoading();
+        return this.fetchUserLocation(req)
+          .then((stateLocationList: Location[]) => {
+            notifyLoaded();
+            const list = stateLocationList.map((s) => ({ label: s.name, value: s }));
+            if (config.default && initial) {
+              const option = list.find((o) => o.value.id === config.default.id || o.label === config.default.name);
+              formControl.patchValue(option ? option.value : null, { emitModelToViewChange: false });
+              formControl.markAsPristine();
+              config.default['code'] = option ? option.value['code'] : config.default['code'];
+            }
+            initial = false;
+            return list;
+          })
+          .catch((e) => {
+            notifyLoaded();
+            this.commonUtilService.showToast('NO_DATA_FOUND');
+            console.error(e);
+            return [];
+          });
+      });
+    };
+  }
+```
+ The Logic Inside can be customised to own needs of project.
+ 
+Function Signature should be as follows:
+
+```
+functionName(config: FieldConfig<any>, initial = false): FieldConfigOptionsBuilder<T>
+```
+
 
 ## Versions
-
-| release branch    | npm package version | Angular Version |
-|-------------------|---------------------|-----------------|
-| v10_migration     |      4.11.0         |     Ng V10      |
-| release-5.1.0_v11 |      4.12.0         |     Ng V11      |
-| release-5.1.0_v12 |      5.1.0          |     Ng V12      |
-| release-5.1.0_v12 |      5.1.1          |     Ng V12      |
-| release-6.0.0_v13 |      6.0.0          |     Ng V13      |
-
-
+|   release branch  | npm package version | Angular Version |
+|:-----------------:|:-------------------:|:---------------:|
+| release-5.0.1     |        5.0.1        |      Ng V9      |
+| release-5.1.0_v10 |        5.1.0        |      Ng V10     |
+| release-5.1.0_v11 |        5.1.1        |      Ng V11     |
+| release-5.1.0_v12 |        5.1.2        |      Ng V12     |
+| release-6.0.0_v13 |        6.0.0        |      Ng V13     |
+| release-6.0.0_v14 |        6.0.1        |      Ng V14     |
